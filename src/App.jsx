@@ -8,7 +8,6 @@ import GalleryPage from './pages/GalleryPage';
 import Contact from './pages/Contact';
 import PlaceholderPage from './pages/PlaceholderPage';
 
-// Helper array to register all dynamic unassigned routes
 const placeholderRoutes = [
   "/walk-in", "/reach-in", "/office-spaces", "/pantries", "/mudrooms", "/laundry-rooms",
   "/garage-spaces", "/hardware", "/accessories", "/drawer-and-door-styles", "/colors",
@@ -21,25 +20,23 @@ function App() {
 
   return (
     <Router>
-      <div className="flex bg-luxury-100 text-luxury-900 font-sans min-h-screen">
+      {/* Root layout requested: flex min-h-screen */}
+      <div className="flex min-h-screen bg-[#f9f7f0] text-luxury-900 font-sans">
         
-        {/* Sidebar Navigation */}
+        {/* Left Column */}
         <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         
-        {/* Main Content Area */}
-        <div className="flex-grow flex flex-col md:ml-[260px] w-full min-h-screen transition-all duration-300">
+        {/* Right Container */}
+        <div className="flex-1 md:ml-[260px] flex flex-col min-h-screen">
           
-          {/* Mobile Header Toggle */}
           <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
           
-          <main className="flex-grow pt-20 md:pt-0 flex flex-col">
+          <main className="flex-1 pt-20 md:pt-0">
             <Routes>
-              {/* Existing Routes */}
               <Route path="/" element={<Home />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/contact" element={<Contact />} />
               
-              {/* Auto-register Placeholder Routes */}
               {placeholderRoutes.map(path => (
                 <Route key={path} path={path} element={<PlaceholderPage />} />
               ))}

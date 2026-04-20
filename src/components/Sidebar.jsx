@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronRight, X } from 'lucide-react';
+import { ChevronDown, X } from 'lucide-react';
 
 const menu = [
   {
@@ -59,15 +59,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const [openSection, setOpenSection] = useState(null);
   const location = useLocation();
 
+  // Reset section only if you want: currently we keep state persistent
   const toggleSection = (title) => {
     setOpenSection(openSection === title ? null : title);
   };
 
   const handleLinkClick = () => {
-    // Determine if on mobile to close the overlay
-    if (window.innerWidth < 768) {
-      setIsOpen(false);
-    }
+    setIsOpen(false); // Close overlay on mobile safely
   };
 
   return (
@@ -80,47 +78,42 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
           />
         )}
       </AnimatePresence>
 
-      {/* Sidebar Container */}
-      <motion.aside
-        initial={{ x: '-100%' }}
-        animate={{ x: isOpen || window.innerWidth >= 768 ? 0 : '-100%' }}
-        transition={{ type: 'tween', duration: 0.3 }}
-        className={`fixed top-0 left-0 h-full w-[260px] bg-luxury-100 border-r border-luxury-200 z-50 flex flex-col overflow-y-auto transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+      {/* Sidebar - Pure Tailwind layout for rock-solid Desktop/Mobile toggle */}
+      <aside
+        className={`fixed top-0 left-0 h-full w-[260px] z-40 bg-[#f9f7f0] border-r border-[#e8e3d5] flex flex-col overflow-y-auto transform transition-transform duration-300 md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
-        <div className="p-6 flex justify-between items-center border-b border-luxury-200 sticky top-0 bg-luxury-100 z-10">
-          <Link to="/" onClick={handleLinkClick} className="text-xl font-serif font-bold text-luxury-900 tracking-wider">
+        <div className="p-6 flex justify-between items-center border-b border-[#e8e3d5] sticky top-0 bg-[#f9f7f0] z-10">
+          <Link to="/" onClick={handleLinkClick} className="text-xl font-serif font-bold text-[#3b2c25] tracking-wider">
             FANTASY<span className="font-light">CLOSETS</span>
           </Link>
-          <button onClick={() => setIsOpen(false)} className="md:hidden text-luxury-900">
+          <button onClick={() => setIsOpen(false)} className="md:hidden text-[#3b2c25]">
             <X size={24} />
           </button>
         </div>
 
         <nav className="flex-1 px-4 py-6 space-y-2">
-          {/* Default Links */}
           <Link
             to="/"
             onClick={handleLinkClick}
-            className={`block px-4 py-3 rounded-sm transition-colors text-sm uppercase tracking-wider font-medium ${location.pathname === '/' ? 'bg-luxury-900 text-luxury-100' : 'text-luxury-900 hover:bg-luxury-200/50'}`}
+            className={`block px-4 py-3 rounded-sm transition-colors text-sm uppercase tracking-wider font-medium ${location.pathname === '/' ? 'bg-[#3b2c25] text-[#f9f7f0]' : 'text-[#3b2c25] hover:bg-[#e8e3d5]/50'}`}
           >
             Home
           </Link>
           <Link
             to="/contact"
             onClick={handleLinkClick}
-            className={`block px-4 py-3 rounded-sm transition-colors text-sm uppercase tracking-wider font-medium ${location.pathname === '/contact' ? 'bg-luxury-900 text-luxury-100' : 'text-luxury-900 hover:bg-luxury-200/50'}`}
+            className={`block px-4 py-3 rounded-sm transition-colors text-sm uppercase tracking-wider font-medium ${location.pathname === '/contact' ? 'bg-[#3b2c25] text-[#f9f7f0]' : 'text-[#3b2c25] hover:bg-[#e8e3d5]/50'}`}
           >
             Contact
           </Link>
 
-          <div className="my-6 border-t border-luxury-200/60 pb-2"></div>
+          <div className="my-6 border-t border-[#e8e3d5]/60 pb-2"></div>
 
-          {/* Accordion Categories */}
           {menu.map((category) => {
             const isSectionOpen = openSection === category.title;
             const hasActiveChild = category.items.some(item => item.path === location.pathname);
@@ -129,15 +122,12 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               <div key={category.title} className="mb-2">
                 <button
                   onClick={() => toggleSection(category.title)}
-                  className={`w-full flex items-center justify-between px-4 py-3 transition-colors rounded-sm ${hasActiveChild && !isSectionOpen ? 'text-luxury-900 font-bold' : 'text-luxury-900/80 hover:bg-luxury-200/40 hover:text-luxury-900'}`}
+                  className={`w-full flex items-center justify-between px-4 py-3 transition-colors rounded-sm ${hasActiveChild && !isSectionOpen ? 'text-[#3b2c25] font-bold' : 'text-[#3b2c25]/80 hover:bg-[#e8e3d5]/40 hover:text-[#3b2c25]'}`}
                 >
                   <span className="text-sm uppercase tracking-widest font-medium text-left">
                     {category.title}
                   </span>
-                  <motion.div
-                    animate={{ rotate: isSectionOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <motion.div animate={{ rotate: isSectionOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
                     <ChevronDown size={16} />
                   </motion.div>
                 </button>
@@ -159,7 +149,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                               <Link
                                 to={item.path}
                                 onClick={handleLinkClick}
-                                className={`block px-8 py-2 text-sm transition-colors ${isActive ? 'font-bold text-luxury-900 border-l-2 border-luxury-900' : 'text-luxury-900/70 hover:text-luxury-900 hover:bg-luxury-200/30 font-light'}`}
+                                className={`block px-8 py-2 text-sm transition-colors ${isActive ? 'font-bold text-[#3b2c25] border-l-2 border-[#3b2c25]' : 'text-[#3b2c25]/70 hover:text-[#3b2c25] hover:bg-[#e8e3d5]/30 font-light'}`}
                               >
                                 {item.name}
                               </Link>
@@ -174,7 +164,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             );
           })}
         </nav>
-      </motion.aside>
+      </aside>
     </>
   );
 };
