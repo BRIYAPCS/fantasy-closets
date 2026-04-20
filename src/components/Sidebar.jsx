@@ -118,11 +118,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <Link
             to="/"
             onClick={handleLinkClick}
-            className={`block px-4 py-3 rounded-sm text-sm uppercase tracking-wider font-medium transition-colors ${
-              location.pathname === '/'
+            className={`block px-4 py-3 rounded-sm text-sm uppercase tracking-wider font-medium transition-colors ${location.pathname === '/'
                 ? 'bg-[#3b2c25] text-[#f9f7f0]'
                 : 'text-[#3b2c25] hover:bg-[#e8e3d5]/50'
-            }`}
+              }`}
           >
             Home
           </Link>
@@ -131,11 +130,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <Link
             to="/contact"
             onClick={handleLinkClick}
-            className={`block px-4 py-3 rounded-sm text-sm uppercase tracking-wider font-medium transition-colors ${
-              location.pathname === '/contact'
+            className={`block px-4 py-3 rounded-sm text-sm uppercase tracking-wider font-medium transition-colors ${location.pathname === '/contact'
                 ? 'bg-[#3b2c25] text-[#f9f7f0]'
                 : 'text-[#3b2c25] hover:bg-[#e8e3d5]/50'
-            }`}
+              }`}
           >
             Contact
           </Link>
@@ -157,10 +155,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   className={`
                     w-full flex items-center justify-between px-4 py-3 rounded-sm
                     transition-colors
-                    ${
-                      hasActiveChild && !isSectionOpen
-                        ? 'text-[#3b2c25] font-bold'
-                        : 'text-[#3b2c25]/80 hover:bg-[#e8e3d5]/40'
+                    ${hasActiveChild && !isSectionOpen
+                      ? 'text-[#3b2c25] font-bold'
+                      : 'text-[#3b2c25]/80 hover:bg-[#e8e3d5]/40'
                     }
                   `}
                 >
@@ -170,9 +167,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      isSectionOpen ? 'rotate-180' : ''
-                    }`}
+                    className={`transition-transform ${isSectionOpen ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
@@ -189,10 +185,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                             onClick={handleLinkClick}
                             className={`
                               block px-8 py-2 text-sm transition-colors
-                              ${
-                                isActive
-                                  ? 'font-bold text-[#3b2c25] border-l-2 border-[#3b2c25]'
-                                  : 'text-[#3b2c25]/70 hover:text-[#3b2c25] hover:bg-[#e8e3d5]/30'
+                              ${isActive
+                                ? 'font-bold text-[#3b2c25] border-l-2 border-[#3b2c25]'
+                                : 'text-[#3b2c25]/70 hover:text-[#3b2c25] hover:bg-[#e8e3d5]/30'
                               }
                             `}
                           >
