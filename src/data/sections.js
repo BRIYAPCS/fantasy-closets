@@ -3,10 +3,8 @@
 
 const imgs = (slug, exts) => exts.map((ext, i) => `/sections/${slug}/${String(i + 1).padStart(2, '0')}.${ext}`);
 
-const j20 = Array(20).fill('jpg');
-const j6 = Array(6).fill('jpg');
-const j5 = Array(5).fill('jpg');
-const j8 = Array(8).fill('jpg');
+const j20 = Array(20).fill('jpeg');
+const j6 = Array(6).fill('jpeg');
 
 export const sections = {
   'walk-in': {
@@ -121,7 +119,7 @@ export const sections = {
     description:
       'Explore the curated selection of luxury hardware, pulls and finishes that complete every Fantasy Closets design.',
     category: 'Hardware',
-    images: ['/sections/hardware/01.jpg','/sections/hardware/02.jpg','/sections/hardware/03.jpg','/sections/hardware/04.png','/sections/hardware/05.jpg'],
+    images: ['/sections/hardware/01.jpeg','/sections/hardware/02.jpeg','/sections/hardware/03.jpeg','/sections/hardware/04.png','/sections/hardware/05.jpeg'],
     seo: {
       title: 'Premium Closet Hardware & Finishes',
       description:
@@ -136,7 +134,7 @@ export const sections = {
     description:
       'Drawer inserts, jewelry trays, valet rods, integrated lighting and the finishing touches that make a closet truly bespoke.',
     category: 'Accessories',
-    images: ['/sections/accessories/01.webp','/sections/accessories/02.jpg','/sections/accessories/03.jpg','/sections/accessories/04.jpg','/sections/accessories/05.jpg','/sections/accessories/06.jpg','/sections/accessories/07.jpg','/sections/accessories/08.jpg'],
+    images: ['/sections/accessories/01.webp','/sections/accessories/02.jpeg','/sections/accessories/03.jpeg','/sections/accessories/04.jpeg','/sections/accessories/05.jpeg','/sections/accessories/06.jpeg','/sections/accessories/07.jpeg','/sections/accessories/08.jpeg'],
     seo: {
       title: 'Closet Accessories — Inserts, Lighting & More',
       description:
@@ -151,7 +149,7 @@ export const sections = {
     description:
       'Discover the full range of drawer fronts and door styles available for your custom closet, pantry or built-in.',
     category: 'Drawer & Door',
-    images: ['/sections/drawer-and-door-styles/01.jpg','/sections/drawer-and-door-styles/02.jpg','/sections/drawer-and-door-styles/03.jpg','/sections/drawer-and-door-styles/04.jpg','/sections/drawer-and-door-styles/05.jpg','/sections/drawer-and-door-styles/06.jpg','/sections/drawer-and-door-styles/07.png','/sections/drawer-and-door-styles/08.jpg','/sections/drawer-and-door-styles/09.png'],
+    images: ['/sections/drawer-and-door-styles/01.jpeg','/sections/drawer-and-door-styles/02.jpeg','/sections/drawer-and-door-styles/03.jpeg','/sections/drawer-and-door-styles/04.jpeg','/sections/drawer-and-door-styles/05.jpeg','/sections/drawer-and-door-styles/06.jpeg','/sections/drawer-and-door-styles/07.png','/sections/drawer-and-door-styles/08.jpeg','/sections/drawer-and-door-styles/09.png'],
     seo: {
       title: 'Drawer & Door Styles for Custom Closets',
       description:
@@ -166,7 +164,7 @@ export const sections = {
     description:
       'Browse our finish library — wood tones, lacquers and designer colors for closets and built-ins.',
     category: 'Colors',
-    images: imgs('colors', ['jpg']),
+    images: imgs('colors', ['jpeg']),
     seo: {
       title: 'Custom Closet Colors & Finish Library',
       description:
