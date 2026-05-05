@@ -1,9 +1,39 @@
 import ContactForm from '../components/ContactForm';
 import { motion } from 'framer-motion';
+import { useSEO } from '../hooks/useSEO';
 
 const Contact = () => {
+  useSEO({
+    title: 'Contact Us — Book a Free Custom Closet Consultation',
+    description:
+      'Schedule a complimentary consultation with the Fantasy Closets design team. Visit our Beverly Hills showroom or book an in-home appointment.',
+    keywords:
+      'closet consultation, custom closet quote, Beverly Hills closet showroom, free design consultation, contact closet designer',
+    path: '/contact',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contact Fantasy Closets',
+      url: 'https://fantasycloset.com/contact',
+      mainEntity: {
+        '@type': 'LocalBusiness',
+        name: 'Fantasy Closets',
+        telephone: '+1-555-123-4567',
+        email: 'contact@fantasyclosets.com',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '123 Luxury Lane, Suite 100',
+          addressLocality: 'Beverly Hills',
+          addressRegion: 'CA',
+          postalCode: '90210',
+          addressCountry: 'US',
+        },
+      },
+    },
+  });
+
   return (
-    <div className="py-20 bg-luxury-100 min-h-screen">
+    <div className="pt-32 pb-20 bg-luxury-100 min-h-screen">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-16">
           

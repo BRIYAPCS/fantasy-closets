@@ -27,46 +27,30 @@ function App() {
 
   return (
     <Router>
-      {/* Root layout: horizontal flex */}
-      <div className="flex min-h-screen bg-[#f9f7f0] text-luxury-900 font-sans">
+      <div className="min-h-screen flex flex-col bg-[#f9f7f0] text-luxury-900 font-sans">
 
-        {/* ================= SIDEBAR ================= */}
-        {/* 
-          - Always visible on desktop
-          - Slide-in on mobile
-        */}
-        <Sidebar 
-          isOpen={isSidebarOpen} 
-          setIsOpen={setIsSidebarOpen} 
+        {/* Slide-in drawer (triggered from navbar on all breakpoints) */}
+        <Sidebar
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
         />
 
-        {/* ================= MAIN CONTENT ================= */}
-        <div className="flex-1 md:ml-[260px] flex flex-col min-h-screen">
-          
-          {/* Navbar (top bar) */}
-          <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
+        {/* Top navbar — always visible, overlays the hero */}
+        <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
 
-          {/* Page Content */}
-          <main className="flex-1 pt-20 md:pt-0">
-            <Routes>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/contact" element={<Contact />} />
 
-              {/* Core Pages */}
-              <Route path="/" element={<Home />} />
-              <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/contact" element={<Contact />} />
+            {placeholderRoutes.map(path => (
+              <Route key={path} path={path} element={<PlaceholderPage />} />
+            ))}
+          </Routes>
+        </main>
 
-              {/* Dynamic Placeholder Pages */}
-              {placeholderRoutes.map(path => (
-                <Route key={path} path={path} element={<PlaceholderPage />} />
-              ))}
-
-            </Routes>
-          </main>
-
-          {/* Footer */}
-          <Footer />
-
-        </div>
+        <Footer />
       </div>
     </Router>
   );

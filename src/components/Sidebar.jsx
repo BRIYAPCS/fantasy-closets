@@ -72,31 +72,27 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      {/* ================= MOBILE OVERLAY ================= */}
+      {/* ================= OVERLAY ================= */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-30 md:hidden"
+          className="fixed inset-0 bg-black/40 z-40"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      {/* ================= SIDEBAR ================= */}
+      {/* ================= DRAWER ================= */}
       <aside
         className={`
-          fixed md:static
+          fixed
           top-0 left-0 h-full
-          w-[260px]
+          w-[280px]
           bg-[#f9f7f0]
           border-r border-[#e8e3d5]
-          z-40 flex flex-col
+          z-50 flex flex-col
 
           transform transition-transform duration-300
 
-          /* MOBILE: slide in/out */
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
-
-          /* DESKTOP: always visible */
-          md:translate-x-0
         `}
       >
 

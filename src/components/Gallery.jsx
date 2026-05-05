@@ -3,18 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 
 const Gallery = () => {
-  const categories = ['All', 'Walk-in Closets', 'Laundry Rooms', 'Materials'];
+  const categories = ['All', 'Walk-in Closets', 'Reach-in Closets', 'Materials'];
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const galleryItems = [
-    { id: 1, src: '/walkin_closet.png', category: 'Walk-in Closets', alt: 'Modern Walk-in Closet' },
-    { id: 2, src: '/laundry_room.png', category: 'Laundry Rooms', alt: 'Luxury Laundry Area' },
-    { id: 3, src: '/hero_closet.png', category: 'Walk-in Closets', alt: 'Boutique Display Custom' },
-    // Placeholder repeats for display layout
-    { id: 4, src: '/walkin_closet.png', category: 'Materials', alt: 'Rich wood finishing' },
-    { id: 5, src: '/laundry_room.png', category: 'Laundry Rooms', alt: 'Custom cabinets' },
-    { id: 6, src: '/hero_closet.png', category: 'Walk-in Closets', alt: 'Pristine Shelving' },
+    { id: 1, src: '/gallery/closet_01.jpg', category: 'Walk-in Closets', alt: 'White walk-in closet with marble island and chandelier' },
+    { id: 2, src: '/gallery/closet_02.jpg', category: 'Walk-in Closets', alt: 'Custom walk-in closet design' },
+    { id: 3, src: '/gallery/closet_03.jpg', category: 'Reach-in Closets', alt: 'Tailored reach-in closet shelving' },
+    { id: 4, src: '/gallery/closet_04.jpg', category: 'Walk-in Closets', alt: 'Bespoke walk-in wardrobe' },
+    { id: 5, src: '/gallery/closet_05.jpg', category: 'Reach-in Closets', alt: 'Custom reach-in closet organization' },
+    { id: 6, src: '/gallery/closet_06.jpg', category: 'Walk-in Closets', alt: 'Luxury walk-in closet installation' },
+    { id: 7, src: '/gallery/closet_07.jpg', category: 'Materials', alt: 'Premium closet materials and finishes' },
+    { id: 8, src: '/gallery/closet_08.jpg', category: 'Walk-in Closets', alt: 'Designer walk-in closet detail' },
+    { id: 9, src: '/gallery/closet_09.jpg', category: 'Materials', alt: 'Dark wood-finish custom closet' },
   ];
 
   const filteredItems = galleryItems.filter(item => 

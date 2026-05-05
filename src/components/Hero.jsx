@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden -mt-20">
+    <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/hero_closet.png" 
-          alt="Luxury custom closet" 
+        <img
+          src="/hero_main.jpg"
+          alt="Luxury custom walk-in closet by Fantasy Closets"
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-luxury-900/40 bg-gradient-to-t from-luxury-900/80 to-transparent"></div>

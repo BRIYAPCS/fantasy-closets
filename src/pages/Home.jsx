@@ -2,8 +2,29 @@ import Hero from '../components/Hero';
 import Services from '../components/Services';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 
 const Home = () => {
+  useSEO({
+    title: 'Luxury Custom Closets & Bespoke Storage Design',
+    description:
+      'Fantasy Closets crafts luxury custom walk-in closets, pantries, mudrooms, laundry rooms and garage storage. Premium materials, bespoke design, white-glove installation.',
+    keywords:
+      'custom closets, luxury closets, walk-in closets, bespoke closet design, custom storage, closet organization, closet designer, Beverly Hills closets',
+    path: '/',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Fantasy Closets',
+      url: 'https://fantasycloset.com/',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://fantasycloset.com/gallery?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  });
+
   return (
     <>
       <Hero />
@@ -20,9 +41,9 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="lg:w-1/2"
             >
-              <img 
-                src="/walkin_closet.png" 
-                alt="Walk-in Closet Feature" 
+              <img
+                src="/gallery/closet_01.jpg"
+                alt="Custom walk-in closet with island and chandelier"
                 className="w-full h-auto object-cover shadow-2xl"
               />
             </motion.div>
