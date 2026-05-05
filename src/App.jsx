@@ -1,42 +1,30 @@
-// React + Router
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Components
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 
-// Pages
 import Home from './pages/Home';
 import GalleryPage from './pages/GalleryPage';
 import Contact from './pages/Contact';
+import SectionPage from './pages/SectionPage';
+import TextSectionPage from './pages/TextSectionPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 
-// Placeholder routes (future pages)
-const placeholderRoutes = [
-  "/walk-in", "/reach-in", "/office-spaces", "/pantries", "/mudrooms", "/laundry-rooms",
-  "/garage-spaces", "/hardware", "/accessories", "/drawer-and-door-styles", "/colors",
-  "/before-after", "/installation-video", "/pet-helpers", "/about",
-  "/why-choose-us", "/faqs", "/terms"
+const gallerySlugs = [
+  'walk-in', 'reach-in', 'office-spaces', 'pantries', 'mudrooms', 'laundry-rooms',
+  'garage-spaces', 'hardware', 'accessories', 'drawer-and-door-styles', 'colors',
+  'before-after', 'pet-helpers',
 ];
 
-function App() {
-  // Controls mobile sidebar only
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const textSlugs = ['about', 'why-choose-us', 'faqs'];
 
+const remainingPlaceholders = ['/installation-video', '/terms'];
+
+function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-[#f9f7f0] text-luxury-900 font-sans">
-
-        {/* Slide-in drawer (triggered from navbar on all breakpoints) */}
-        <Sidebar
-          isOpen={isSidebarOpen}
-          setIsOpen={setIsSidebarOpen}
-        />
-
-        {/* Top navbar — always visible, overlays the hero */}
-        <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
+        <Navbar />
 
         <main className="flex-1">
           <Routes>
@@ -44,7 +32,15 @@ function App() {
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<Contact />} />
 
-            {placeholderRoutes.map(path => (
+            {gallerySlugs.map((slug) => (
+              <Route key={slug} path={`/${slug}`} element={<SectionPage slug={slug} />} />
+            ))}
+
+            {textSlugs.map((slug) => (
+              <Route key={slug} path={`/${slug}`} element={<TextSectionPage slug={slug} />} />
+            ))}
+
+            {remainingPlaceholders.map((path) => (
               <Route key={path} path={path} element={<PlaceholderPage />} />
             ))}
           </Routes>
